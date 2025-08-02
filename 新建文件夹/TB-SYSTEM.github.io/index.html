@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <h1>My Works</h1>
+
+  <!-- 瀑布流 + 3D 翻转卡片 -->
+  <div class="gallery">
+    <!-- 项目 1 -->
+    <div class="card">
+      <a class="card-face card-front" href="projects/project-1/">
+        <img src="projects/project-1/thumbnail.jpg" alt="Project 1" />
+        <h3>Project 1</h3>
+      </a>
+      <div class="card-face card-back">
+        <div>
+          <h2>Project 1</h2>
+          <a class="neon-btn" href="projects/project-1/">View Site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目 2 -->
+    <div class="card">
+      <a class="card-face card-front" href="projects/project-2/">
+        <img src="projects/project-2/thumbnail.jpg" alt="Project 2" />
+        <h3>Project 2</h3>
+      </a>
+      <div class="card-face card-back">
+        <div>
+          <h2>Project 2</h2>
+          <a class="neon-btn" href="projects/project-2/">View Site</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 继续复制上面结构，改路径/文字即可 -->
+  </div>
+
+  <!-- 滚动视差背景 -->
+  <div id="parallax"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
