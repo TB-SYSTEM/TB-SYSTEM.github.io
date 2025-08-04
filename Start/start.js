@@ -1,5 +1,5 @@
 ﻿const projects = [
-  { id: 'project-1', title: '项目一',  desc: '简短描述一句话' },
+  { id: 'project-1', title: '2048',  desc: '经典2048，awa' },
   { id: 'project-2', title: '项目二',  desc: '简短描述一句话' },
   { id: 'project-3', title: '项目三',  desc: '简短描述一句话' },
   { id: 'project-4', title: '项目四',  desc: '简短描述一句话' }
