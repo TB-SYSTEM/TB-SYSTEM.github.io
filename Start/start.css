@@ -6,20 +6,6 @@
 }
 
 body {
-  /* 原有样式保持不变 */
-  background-image: url('../assets/start-bg.jpg');
-  background-size: cover;        /* 铺满全屏 */
-  background-position: center;   /* 居中 */
-  background-attachment: fixed;  /* 视差效果，可选 */
-}
-
-  /* 原有样式保持不变 */
-  background-image: url('../../assets/start-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background: #fff;
     color: #333;
