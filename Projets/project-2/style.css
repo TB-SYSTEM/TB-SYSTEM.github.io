@@ -1,0 +1,55 @@
+﻿/* 全局霓虹暗黑风 */
+html,body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0d0d0d;
+  font-family:'Segoe UI',Arial;
+  color:#fff;
+  overflow:hidden;
+}
+
+#gameCanvas{
+  background:#090909;
+  border:2px solid #0ff;
+  box-shadow:0 0 20px #0ff;
+  border-radius:12px;
+}
+
+#ui{
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  font-size:20px;
+  letter-spacing:2px;
+}
+
+.glow{
+  color:#0ff;
+  text-shadow:0 0 6px #0ff;
+}
+
+#msg{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:28px;
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+  text-shadow:0 0 10px #0ff;
+}
+
+#msg.show{ opacity:1; }
+
+footer{
+  position:absolute;
+  bottom:10px;
+  font-size:14px;
+  color:#0ff80f;
+}
