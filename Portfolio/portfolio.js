@@ -1,6 +1,6 @@
 ﻿/* 只扫描 zhenghuo/ 文件夹里的作品 */
 const projects = [
-  { id: 'zheng-1', title: '作品 1', desc: '整活作品描述' },
+  { id: 'zheng-1', title: '亿点即爆', desc: 'awa' },
   { id: 'zheng-2', title: '作品 2', desc: '整活作品描述' },
   { id: 'zheng-3', title: '作品 3', desc: '整活作品描述' },
   { id: 'zheng-4', title: '作品 4', desc: '整活作品描述' }

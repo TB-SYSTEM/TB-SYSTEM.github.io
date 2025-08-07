@@ -1,4 +1,4 @@
-﻿body {
+body {
   font-family: "Helvetica Neue", sans-serif;
   text-align: center;
   background: #faf8ef;
@@ -9,11 +9,21 @@
 h1 {
   font-size: 48px;
   margin: 10px 0;
+  color: #776e65;
+}
+
+.instructions {
+  max-width: 500px;
+  margin: 0 auto 20px;
+  color: #776e65;
+  line-height: 1.5;
 }
 
 .score-container {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #776e65;
+  font-weight: bold;
 }
 
 .grid-container {
@@ -26,6 +36,8 @@ h1 {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   padding: 10px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .grid-cell {
@@ -37,6 +49,37 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  position: absolute;
+  transition: all 0.15s ease-in-out;
+}
+
+.tile-new {
+  animation: appear 0.2s;
+}
+
+.tile-merged {
+  animation: pop 0.2s;
+}
+
+@keyframes appear {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .tile-2 { background: #eee4da; }
@@ -60,4 +103,8 @@ button {
   background: #8f7a66;
   color: #fff;
   cursor: pointer;
+}
+
+button:hover {
+  background: #7c6954;
 }
