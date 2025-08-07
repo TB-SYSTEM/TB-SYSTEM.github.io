@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>点击气球小游戏</title>
+    <title>亿点即爆</title>
 <style>
 /* 1. 全局美化 */
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,Helvetica,sans-serif}
@@ -53,30 +53,33 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
 }
 #startBtn:hover{background:#7b68ee;color:#fff;transform:translateY(-2px)}
 
-/* 7. 游戏结束弹窗 */
-.gameOver{
-    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-    background:rgba(255,255,255,.95);
-    padding:45px 60px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 8px 30px rgba(0,0,0,.25);
-    color:#333
+/* 7. 游戏结束面板 */
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: none;
+    color: #333;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    z-index: 10;
 }
-.gameOver button{
-    margin-top:15px;
-    padding:10px 30px;
-    border:none;
-    border-radius:50px;
-    background:#7b68ee;
-    color:#fff;
-    cursor:pointer;
-    font-size:1rem
+
+/* 8. 爆炸动画 */
+@keyframes pop {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(0); opacity: 0; }
 }
+
 </style>
 </head>
 <body>
-    <h1>点击气球小游戏</h1>
+    <h1>亿点即爆</h1>
     
     <div id="gameArea"></div>
     
@@ -84,12 +87,6 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
         <h2>得分: <span id="score">0</span></h2>
         <p>剩余时间: <span id="time">30</span> 秒</p>
         <button id="startBtn" onclick="startGame()">开始游戏</button>
-    </div>
-
-    <div class="gameOver" id="gameOver">
-        <h2>游戏结束！</h2>
-        <p>最终得分: <span id="finalScore">0</span></p>
-        <button onclick="resetGame()">再玩一次</button>
     </div>
 
     <script>
@@ -108,7 +105,7 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
             const balloon = document.createElement('div');
             balloon.className = 'balloon';
             
-            // 随机颜色
+            // 随机颜色 (如果my-balloon.png不存在，则使用纯色背景)
             const color = colors[Math.floor(Math.random() * colors.length)];
             balloon.style.backgroundColor = color;
             
@@ -121,6 +118,7 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
             // 点击事件
             balloon.addEventListener('click', () => {
                 if (!gameActive) return;
+                
                 
                 score += 10;
                 scoreDisplay.textContent = score;
@@ -144,21 +142,26 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
         }
 
         function playPopSound() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-            oscillator.type = 'sine';
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.1);
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+            } catch (e) {
+                // 如果音频API不可用，则静默失败
+                console.log("Audio not supported");
+            }
         }
 
         function startGame() {
@@ -170,7 +173,6 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
             timeDisplay.textContent = timeLeft;
             
             document.getElementById('startBtn').style.display = 'none';
-            document.getElementById('gameOver').style.display = 'none';
             
             // 清除所有气球
             gameArea.innerHTML = '';
@@ -198,8 +200,11 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
             clearInterval(balloonInterval);
             clearInterval(timerInterval);
             
-            document.getElementById('finalScore').textContent = score;
-            document.getElementById('gameOver').style.display = 'block';
+            // 高亮显示最终得分
+            scoreDisplay.parentElement.style.color = '#FFD700';
+            scoreDisplay.parentElement.style.fontWeight = 'bold';
+            scoreDisplay.parentElement.style.fontSize = '1.8rem';
+            
             document.getElementById('startBtn').style.display = 'inline-block';
             
             // 清除所有气球
@@ -207,6 +212,11 @@ h1{font-size:2.5rem;letter-spacing:2px;margin-bottom:20px;text-shadow:0 3px 8px 
         }
 
         function resetGame() {
+            // 重置得分显示样式
+            scoreDisplay.parentElement.style.color = '';
+            scoreDisplay.parentElement.style.fontWeight = '';
+            scoreDisplay.parentElement.style.fontSize = '';
+            
             endGame();
             startGame();
         }
