@@ -81,7 +81,7 @@ function updateBoard() {
   // 检查游戏是否结束
   if (isGameOver()) {
     setTimeout(() => {
-      alert("游戏结束！最终得分：" + score);
+      alert("游戏结束了哟~杂鱼~最终得分：" + score);
     }, 100);
   } else if (!hasWon && board.some(row => row.includes(2048))) {
     hasWon = true;
