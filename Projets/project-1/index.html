@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>2048</title>
+  <!-- 相对路径：同级目录下的 styles.css -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>2048</h1>
+  <div class="instructions">
+    <p>使用方向键移动方块。当两个相同数字的方块相遇时，它们会合并成一个方块，数字相加。达到2048即获胜！</p>
+  </div>
+  <div class="score-container">分数：<span id="score">0</span></div>
+  <div id="game-board" class="grid-container"></div>
+  <button onclick="restart()">要重新开始吗？杂鱼~</button>
+
+  <!-- 相对路径：同级目录的 script.js -->
+  <script src="script.js"></script>
+</body>
+</html>

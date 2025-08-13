@@ -1,0 +1,101 @@
+﻿/* ===== 基础样式（与主页保持一致） ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #fff;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 680px;
+    width: 100%;
+    padding: 60px 40px;
+}
+
+h1 {
+    font-size: 2.2em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+p { margin-bottom: 1.2em; color: #555; }
+
+a.back {
+    display: inline-block;
+    margin-top: 30px;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 8px 16px;
+    border: 1px solid #3498db;
+    border-radius: 20px;
+    transition: all .3s ease;
+}
+
+a.back:hover {
+    background: #3498db;
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.8em; }
+    .container { padding: 40px 20px; }
+}
+
+/* ===== 作品卡片 ===== */
+.portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+}
+
+.card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    transition: transform .25s ease, box-shadow .25s ease;
+    cursor: pointer;
+    background: #fff;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+.card .info {
+    padding: 14px 16px;
+}
+
+.card .title {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.card .desc {
+    font-size: .9em;
+    color: #7f8c8d;
+}
