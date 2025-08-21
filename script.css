@@ -33,7 +33,7 @@ body::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(8px);
     z-index: -1;
 }
