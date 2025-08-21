@@ -28,16 +28,6 @@ body::before {
     z-index: -2;
 }
 
-/* 磨砂玻璃遮罩 */
-body::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(8px);
-    z-index: -1;
-}
-
 /* ===== 主容器 ===== */
 .container {
     position: relative;
