@@ -5,6 +5,27 @@
     box-sizing: border-box;
 }
 
+/* 磨砂玻璃遮罩 */
+body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(8px);
+    z-index: -1;
+}
+
+/* ===== 磨砂背景 ===== */
+body {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
 /* 背景图 */
 body::before {
     content: '';
