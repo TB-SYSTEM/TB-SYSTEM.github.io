@@ -5,17 +5,6 @@
     box-sizing: border-box;
 }
 
-/* ===== 磨砂背景 ===== */
-body {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow: hidden;
-}
-
 /* 背景图 */
 body::before {
     content: '';
