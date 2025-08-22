@@ -1,32 +1,70 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<title>"a little game"</title>
+<link rel="stylesheet" href="tyle.css">
 </head>
 <body>
-    <!-- 错误页面伪装 -->
-    <div class="error-container">
-        <h1>404</h1>
-        <p>页面不存在</p>
-    </div>
 
-    <!-- 裂缝动画 -->
-    <div class="crack"></div>
+<!-- ===== 开机画面 ===== -->
+<div id="bootScreen">
+  <div>
+    <div id="bootText" class="cursor"></div>
+    <div id="barBox"><div id="bar"></div></div>
+  </div>
+</div>
 
-    <!-- 隐藏触发区域 -->
-    <div class="hidden-btn" onclick="activateEasterEgg()"></div>
+<!-- ===== 游戏主体 ===== -->
+<div id="game" style="display:none">
+  <h1>a little "game"?</h1>
 
-    <!-- 摩斯密码提示 -->
-    <div class="morse-hint">·--· · ·- -.- ·- ·-·· · --. ·-- ·- ·-··</div>
+  <div id="r0" class="room active">
+    <p>每次刷新页面密码都会变。<br>游戏进度自动保存。</p>
+    <button onclick="startOrResume()">开始 / 继续</button>
+    <button onclick="resetSave()">重置存档</button>
+  </div>
 
-    <!-- 彩蛋内容 -->
-    <div class="easter-egg" id="easterEgg">
-        <div class="quantum-text" id="quantumText">量子隧穿中...awa</div>
-    </div>
+  <div id="r1" class="room">
+    <p>三色开关：顺序按 <strong>红绿蓝红绿蓝</strong> 点亮灯泡。</p>
+    <button onclick="switchPress('red')">红</button>
+    <button onclick="switchPress('green')">绿</button>
+    <button onclick="switchPress('blue')">蓝</button>
+    <div id="bulb">灯泡：⚫</div>
+  </div>
 
-    <script src="script.js"></script>
+  <div id="r2" class="room">
+    <p>将棋盘点亮成 <strong id="targetBin"></strong>（二进制）。</p>
+    <div id="board" class="chessBoard"></div>
+  </div>
+
+  <div id="r3" class="room">
+    <p>时钟当前 <span id="clockText">00:00</span>，输入正确时间（HH:MM）。</p>
+    <input id="timeInput" placeholder="HH:MM">
+    <button onclick="checkTime()">确认</button>
+  </div>
+
+  <div id="r4" class="room">
+    <p>输入回文字符串，且包含 <strong id="mirrorNeed"></strong>。</p>
+    <input id="mirrorInput" placeholder="回文">
+    <button onclick="checkMirror()">检查</button>
+  </div>
+
+  <div id="r5" class="room">
+    <p>根据 4 个数字计算最终密码：</p>
+    <div class="log" id="finalLog"></div>
+    <input id="finalInput" placeholder="最终密码">
+    <button onclick="checkFinal()">开门</button>
+  </div>
+
+  <div id="r6" class="room">
+    <h2>恭喜通关！</h2>
+    <p>本次密码：<span id="showSeed"></span></p>
+    <button onclick="resetSave()">再来一局</button>
+  </div>
+</div>
+
+<script src="boot.js"></script>   <!-- 先执行开机 -->
+<script src="game.js"></script>   <!-- 后执行游戏 -->
 </body>
 </html>

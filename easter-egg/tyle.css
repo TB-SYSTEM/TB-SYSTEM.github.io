@@ -1,0 +1,31 @@
+:root{
+  --bg:#111;
+  --fg:#0f0;
+  --err:#f55;
+}
+
+/* 页面基础 */
+body{margin:0;padding:20px;background:var(--bg);color:var(--fg);font-family:monospace;font-size:16px}
+h1{margin:0 0 10px}
+input[type=text]{background:#222;border:1px solid var(--fg);color:var(--fg);padding:4px 6px}
+button{background:#222;border:1px solid var(--fg);color:var(--fg);cursor:pointer;margin:0 4px;padding:4px 8px}
+button:disabled{border-color:#555;color:#555;cursor:not-allowed}
+.log{margin:10px 0;padding:6px;border-left:3px solid var(--fg);background:#1a1a1a;max-height:120px;overflow-y:auto}
+.error{color:var(--err)}
+
+/* 棋盘 */
+.chessBoard{display:grid;grid-template-columns:repeat(4,40px);gap:2px;margin:10px 0}
+.cell{width:40px;height:40px;background:#222;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cell.on{background:var(--fg);color:var(--bg)}
+
+/* 房间显示控制 */
+.room{display:none}
+.room.active{display:block}
+
+/* ===== BIOS 开机动画 ===== */
+#bootScreen{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center}
+#bootText{width:600px;white-space:pre-wrap;line-height:1.4}
+.cursor::after{content:'|';animation:blink 1s infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+#barBox{width:400px;height:20px;border:1px solid #555;margin-top:20px}
+#bar{width:0;height:100%;background:#0f0;transition:width .3s}
