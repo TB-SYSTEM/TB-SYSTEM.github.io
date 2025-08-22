@@ -15,3 +15,21 @@ li{margin-bottom:20px}
 a{color:#0066cc;text-decoration:none;font-size:1.1rem}
 a:hover{text-decoration:underline}
 p.summary{margin-top:4px;color:#555;font-size:0.95rem}
+
+/* 搜索框 */
+#search-box{
+  margin-bottom:25px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+#search-input{
+  flex:1;
+  padding:8px 12px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  font-size:1rem;
+}
+#search-count{color:#666;font-size:.9rem}
+/* 搜索结果高亮 */
+mark{background:#fffd9e}
