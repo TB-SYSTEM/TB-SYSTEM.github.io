@@ -18,7 +18,7 @@ function activateEasterEgg() {
     
     // 解码摩斯密码
     const messages = [
-        "awa这你都发现了？",
+        "awa你通关了？",
         "这里隐藏着开发者的小秘密",
         "倒数10个数",
         "10",
