@@ -1,35 +1,63 @@
-/* 全局 */
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
-  background:#fff;
-  color:#222;
-  max-width:720px;
-  margin:40px auto;
-  padding:0 20px;
-  line-height:1.6;
+/* ===== 全局变量 ===== */
+:root{
+  --blur:12px;
+  --card-bg:rgba(255,255,255,0.25);
+  --border:rgba(255,255,255,0.35);
+  --radius:18px;
 }
-h1{margin-bottom:30px;font-weight:600;font-size:1.8rem}
-ul{list-style:none}
-li{margin-bottom:20px}
-a{color:#0066cc;text-decoration:none;font-size:1.1rem}
-a:hover{text-decoration:underline}
-p.summary{margin-top:4px;color:#555;font-size:0.95rem}
 
-/* 搜索框 */
+/* ===== 渐变背景 ===== */
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  color:#fff;
+  background:linear-gradient(135deg,#667eea 0%, #764ba2 100%);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:40px 20px;
+}
+
+/* ===== 标题 + 搜索 ===== */
+h1{margin-bottom:25px;font-weight:600;font-size:2rem}
 #search-box{
-  margin-bottom:25px;
+  margin-bottom:35px;
   display:flex;
   align-items:center;
   gap:10px;
+  width:100%;
+  max-width:680px;
 }
 #search-input{
   flex:1;
-  padding:8px 12px;
-  border:1px solid #ccc;
-  border-radius:4px;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:rgba(255,255,255,0.15);
+  color:#fff;
+  backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
   font-size:1rem;
 }
-#search-count{color:#666;font-size:.9rem}
-/* 搜索结果高亮 */
-mark{background:#fffd9e}
+#search-input::placeholder{color:#f1f1f1b3}
+#search-count{color:#fff;font-size:.9rem}
+
+/* ===== 磨砂卡片列表 ===== */
+ul{list-style:none;margin:0;padding:0;width:100%;max-width:680px}
+li{
+  padding:22px 26px;
+  margin-bottom:20px;
+  border-radius:var(--radius);
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur));
+  -webkit-backdrop-filter:blur(var(--blur));
+  box-shadow:0 8px 32px rgba(31,38,135,.25);
+  transition:transform .2s;
+}
+li:hover{transform:translateY(-3px)}
+li a{color:#fff;font-weight:600;font-size:1.15rem;text-decoration:none}
+li a:hover{text-decoration:underline}
+.summary{margin-top:6px;color:#ffffffd9;font-size:.95rem}
+mark{background:#fffd9e;color:#333}
