@@ -80,7 +80,7 @@ window.addEventListener('scroll', () => {
 });
 
 (() => {
-  const targetURL = 'https://tb-system.github.io/ziyuan/easter-egg/index.html';
+  const targetURL = 'https://tb-system.github.io/easter-egg/index.html';
   const seq = [
     'ArrowUp','ArrowUp','ArrowDown','ArrowDown',
     'ArrowLeft','ArrowRight','ArrowLeft','ArrowRight',
