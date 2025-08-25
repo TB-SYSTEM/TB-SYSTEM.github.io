@@ -134,6 +134,6 @@ function checkFinal() {
   if (parseInt(document.getElementById('finalInput').value) === ans) {
     document.getElementById('showSeed').textContent = ans;
     resetSave();
-    location.href = 'inbex.html'; // 通关跳转
+    location.href = 'awawa/inbex.html'; // 通关跳转
   } else alert('密码错误');
 }
